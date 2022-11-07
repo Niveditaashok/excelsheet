@@ -1,0 +1,58 @@
+package StepDefinition;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import PageFactory.GetStartedPF;
+import PageFactory.RegistrationPF;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class RegisterStepDefinition {
+
+
+	WebDriver driver=null;
+	
+	 RegistrationPF reg;
+	 
+	
+	@Given("The user is in  Register Page {string}")
+	public void the_user_is_in_register_page(String string) throws InterruptedException {
+		//string= "https://dsportalapp.herokuapp.com/register";
+ System.out.println("The user is in  Register Page {string}");
+ 
+ 
+ String projectPath=System.getProperty("user.dir");
+ System.setProperty("webdriver.chrome.driver",projectPath+"\\src\\test\\resources\\driver\\chromedriver\\chromedriver_win32 (1)\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.navigate().to("https://dsportalapp.herokuapp.com/");
+
+	reg=new RegistrationPF(driver);
+	Thread.sleep(2000);
+		
+	
+	}
+
+	@When("The user clicks Register button with all fields empty")
+	public void the_user_clicks_register_button_with_all_fields_empty() {
+	    
+		System.out.println("The user clicks Register button with all fields empty");
+		
+		
+		
+	}
+
+	@Then("It should display an error Please fill out this field below Username textbox")
+	public void it_should_display_an_error_please_fill_out_this_field_below_username_textbox() throws InterruptedException {
+		
+		System.out.println("It should display an error Please fill out this field below Username textbox");
+		
+		reg.getstrtbtn();
+	    reg.regst_btn();
+	    reg.rest_click();
+		
+	   	}
+
+
+}
